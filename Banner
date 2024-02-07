@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Function to print a line of asterisks with padding
+print_line() {
+    printf "%*s\n" "$1" | tr ' ' '*'
+}
+
+# Check if the config file exists
+if [ -f ~/.my_script_config ]; then
+    # Source the config file to load the saved variables
+    source ~/.my_script_config
+
+    # Function to display the banner with your name and a tiger image
+    display_banner() {
+        clear  # Clear the terminal screen
+
+        echo "***************************************"
+        echo "*                                      *"
+        echo "*                   $name              *"
+        echo "*                                      *"
+        echo "***************************************"
+
+        echo
+        echo "                  /^ ^\\     /^ ^\\"
+        echo "                 / 0 0 \\   / 0 0 \\"
+        echo "                 V\\ Y /V   V\\ Y /V"
+        echo "                  / - \\     / - \\"
+        echo "                 |    |     |    |"
+        echo "                  \\___/     \\___/"
+    }
+
+    # Call the function to display the banner
+    display_banner
+else
+    # Ask the user for input and save it to a file if the file doesn't exist
+    echo "Enter banner name"
+    read name
+    echo "name=\"$name\"" > ~/.my_script_config
+fi
